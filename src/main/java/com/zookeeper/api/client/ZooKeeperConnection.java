@@ -1,4 +1,4 @@
-package com.zookeeper.api.test;
+package com.zookeeper.api.client;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;

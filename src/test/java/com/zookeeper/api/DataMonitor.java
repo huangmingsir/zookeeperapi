@@ -1,4 +1,4 @@
-package zookeeperapi;
+package com.zookeeper.api;
 
 /**
  * A simple class that monitors the data and existence of a ZooKeeper

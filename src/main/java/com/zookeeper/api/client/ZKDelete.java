@@ -1,4 +1,4 @@
-package com.zookeeper.api.test;
+package com.zookeeper.api.client;
 
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.KeeperException;

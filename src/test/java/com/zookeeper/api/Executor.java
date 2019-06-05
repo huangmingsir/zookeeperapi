@@ -1,4 +1,4 @@
-package zookeeperapi;
+package com.zookeeper.api;
 
 /**
  * A simple example program to use DataMonitor to start and
