@@ -40,7 +40,9 @@ public class ZKGetChildren {
 
       } catch(Exception e) {
          System.out.println(e.getMessage());
-      }
+      }finally {
+      	conn.close();
+  	  }
 
    }
 

@@ -14,7 +14,7 @@ public class ZKSetData {
    }
 
    public static void main(String[] args) throws InterruptedException,KeeperException {
-      String path= "/SecondZnode";
+      String path= "/MyFirstZnode";
       byte[] data = "Success".getBytes(); //Assign data which is to be updated.
 		
       try {
@@ -23,6 +23,8 @@ public class ZKSetData {
          update(path, data); // Update znode data to the specified path
       } catch(Exception e) {
          System.out.println(e.getMessage());
-      }
+      }finally {
+      	conn.close();
+  	  }
    }
 }

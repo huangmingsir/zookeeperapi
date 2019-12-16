@@ -22,11 +22,13 @@ public class ZooKeeperConnection {
 	         public void process(WatchedEvent we) {
 
 	            if (we.getState() == KeeperState.SyncConnected) {
+	            	System.out.println("完成一次version、zxid的同步");
 	               connectedSignal.countDown();
 	            }
 	         }
 	      });
-			
+		  //这里为什么要用connectedSignal.await();的目的是因为new ZooKeeper也创建了一个连接线程，调用它的线程在进行zookeeper操作时，为了能正常保持连接完成操作，就
+	      //需要阻塞此连接线程让操作完成后再调用connectedSignal.countDown();释放连接线程。
 	      connectedSignal.await();
 	      return zoo;
 	   }

@@ -14,24 +14,28 @@ public class ZKCreate {
 
 	// Method to create znode in zookeeper ensemble
 	public static void create(String path, byte[] data) throws KeeperException, InterruptedException {
-		zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+		// String create = zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE,
+		// CreateMode.EPHEMERAL_SEQUENTIAL);
+		String create = zk.create(path, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+		System.out.println(create);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		// znode path
-		String path = "/MyFirstZnode"; // Assign path to znode
+		String path = "/MyFirstZnode/sonnode2"; // Assign path to znode
 
 		// data in byte array
-		byte[] data = "My first zookeeper app".getBytes(); // Declare data
+		byte[] data = "My first zookeeper node".getBytes(); // Declare data
 
 		try {
 			conn = new ZooKeeperConnection();
 			zk = conn.connect("192.168.10.233");
 			create(path, data); // Create the data to the specified path
-			conn.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); // Catch error message
+		} finally {
+			conn.close();
 		}
 	}
 }

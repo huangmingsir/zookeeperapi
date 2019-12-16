@@ -21,6 +21,8 @@ public class ZKSync {
          delete(path); //delete the node with the specified path
       } catch(Exception e) {
          System.out.println(e.getMessage()); // catches error messages
-      }
+      }finally {
+      	conn.close();
+  	  }
    }
 }

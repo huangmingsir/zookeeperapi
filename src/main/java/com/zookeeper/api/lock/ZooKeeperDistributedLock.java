@@ -24,7 +24,7 @@ public class ZooKeeperDistributedLock implements Watcher{
     private String lockNode;
     private CountDownLatch latch;
     private CountDownLatch connectedLatch = new CountDownLatch(1);
-private int sessionTimeout = 30000; 
+    private int sessionTimeout = 30000; 
 
     public ZooKeeperDistributedLock(String productId){
         this.productId = productId;

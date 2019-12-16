@@ -19,7 +19,7 @@ public class ZKExists {
    }
 
    public static void main(String[] args) throws InterruptedException,KeeperException {
-      String path = "/SecondZnode"; // Assign znode to the specified path
+      String path = "/MyFirstZnode";//"SecondZnode"; // Assign znode to the specified path
 			
       try {
          conn = new ZooKeeperConnection();
@@ -35,6 +35,8 @@ public class ZKExists {
 				
       } catch(Exception e) {
          System.out.println(e.getMessage()); // Catches error messages
-      }
+      }finally {
+      	conn.close();
+  	  }
    }
 }
