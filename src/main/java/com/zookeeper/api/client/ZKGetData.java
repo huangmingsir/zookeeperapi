@@ -20,7 +20,7 @@ public class ZKGetData {
    }
 
    public static void main(String[] args) throws InterruptedException, KeeperException {
-      String path = "/SecondZnode";
+      String path = "/MyFirstZnode";
       final CountDownLatch connectedSignal = new CountDownLatch(1);
 		
       try {
