@@ -25,6 +25,7 @@ public class ZooKeeperConnection {
 	            }
 	         }
 	      });
+	      //阻塞当前线程，等待KeeperState.SyncConnected真正连接上才释放阻塞线程并返回ZooKeeper对象
 	      connectedSignal.await();
 	      return zoo;
 	   }
