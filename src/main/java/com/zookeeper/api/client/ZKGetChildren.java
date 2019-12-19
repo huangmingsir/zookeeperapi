@@ -1,49 +1,41 @@
 package com.zookeeper.api.client;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
-import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.Watcher.Event.KeeperState;
+import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
 public class ZKGetChildren {
-   private static ZooKeeper zk;
-   private static ZooKeeperConnection conn;
+	private static ZooKeeper zk;
+	private static ZooKeeperConnection conn;
 
-   // Method to check existence of znode and its status, if znode is available.
-   public static Stat znode_exists(String path) throws 
-      KeeperException,InterruptedException {
-      return zk.exists(path,true);
-   }
+	public static Stat znode_exists(String path) throws KeeperException, InterruptedException {
+		return zk.exists(path, true);
+	}
 
-   public static void main(String[] args) throws InterruptedException,KeeperException {
-      String path = "/dubbo"; // Assign path to the znode
-		
-      try {
-         conn = new ZooKeeperConnection();
-         zk = conn.connect("192.168.10.233");
-         Stat stat = znode_exists(path); // Stat checks the path
+	public static void main(String[] args) throws InterruptedException, KeeperException {
+		String path = "/";
 
-         if(stat!= null) {
+		try {
+			conn = new ZooKeeperConnection();
+			zk = conn.connect("192.168.10.233");
+			Stat stat = znode_exists(path);
 
-            //“getChildren" method- get all the children of znode.It has two args, path and watch
-            List <String> children = zk.getChildren(path, false);
-            for(int i = 0; i < children.size(); i++)
-            System.out.println("children's :" + children.get(i)); //Print children's
-         } else {
-            System.out.println("Node does not exists");
-         }
+			if (stat != null) {
+				List<String> children = zk.getChildren(path, false);
+				for (int i = 0; i < children.size(); i++)
+					System.out.println("children's :" + children.get(i));
+			} else {
+				System.out.println("Node does not exists");
+			}
 
-      } catch(Exception e) {
-         System.out.println(e.getMessage());
-      }finally {
-      	conn.close();
-  	  }
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			conn.close();
+		}
 
-   }
+	}
 
 }

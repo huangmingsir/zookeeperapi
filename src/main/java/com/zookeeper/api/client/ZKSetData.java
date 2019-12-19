@@ -4,27 +4,25 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
 
 public class ZKSetData {
-   private static ZooKeeper zk;
-   private static ZooKeeperConnection conn;
+	private static ZooKeeper zk;
+	private static ZooKeeperConnection conn;
 
-   // Method to update the data in a znode. Similar to getData but without watcher.
-   public static void update(String path, byte[] data) throws
-      KeeperException,InterruptedException {
-      zk.setData(path, data, zk.exists(path,true).getVersion());
-   }
+	public static void update(String path, byte[] data) throws KeeperException, InterruptedException {
+		zk.setData(path, data, zk.exists(path, true).getVersion());
+	}
 
-   public static void main(String[] args) throws InterruptedException,KeeperException {
-      String path= "/MyFirstZnode";
-      byte[] data = "Success".getBytes(); //Assign data which is to be updated.
-		
-      try {
-         conn = new ZooKeeperConnection();
-         zk = conn.connect("192.168.10.233");
-         update(path, data); // Update znode data to the specified path
-      } catch(Exception e) {
-         System.out.println(e.getMessage());
-      }finally {
-      	conn.close();
-  	  }
-   }
+	public static void main(String[] args) throws InterruptedException, KeeperException {
+		String path = "/MyFirstZnode";
+		byte[] data = "Success2".getBytes(); 
+
+		try {
+			conn = new ZooKeeperConnection();
+			zk = conn.connect("192.168.10.233");
+			update(path, data); 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			conn.close();
+		}
+	}
 }
